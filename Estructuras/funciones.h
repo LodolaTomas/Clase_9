@@ -17,9 +17,11 @@ void mostrarAlumno(eAlumno alumno);
 int buscarIndice(eAlumno listaDeAlumnos[], int cantidad);
 void buscar_1_Alumno(eAlumno listaDeAlumnos[],int cantidad);
 int buscar_2_Legajo(eAlumno listaDeAlumnos[],int cantidad);
-void cargarAlumno(eAlumno listaDeAlumno[],int cantidad);
+void cargarListadoAlumno(eAlumno listaDeAlumno[],int cantidad);
+void ordenarAlumnos(eAlumno listaDeAlumnos[],int cantidad);
+eAlumno cargarAlumno(void);
 void pedirString(char* menssage,char* lettlers,int len);
-void pedirInt(char* menssage,int* entero,int len);
+void pedirInt(char* menssage,int entero,int len);
 //borrar es logico no fisico.
 void borrarAlumnos(eAlumno listaDeAlumnos[],int cantidad);
 void pausa();

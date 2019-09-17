@@ -23,8 +23,8 @@ void harcodeoAlumnos(eAlumno listaDeAlumnos[],int cantidad)
 {
     int i;
 
-    int legajo[]= {0,1,2,3,4};
-    int isEmpy[]= {1,0,1,1,0};
+    int legajo[]= {1,5,9,10,88};
+    int isEmpy[]= {1,1,1,1,1};
     char nombre[][20]= {"juan","pedro","maria","julieta","pepe"};
     int nota[]= {10,2,9,4,6};
 
@@ -60,7 +60,7 @@ void mostrarAlumnos(eAlumno listaDeAlumnos[],int cantidad)
 }
 void mostrarAlumno(eAlumno alumno)
 {
-    char estado[]={"no"};
+    char estado[]= {"no"};
     if(alumno.isEmpy==OCUPADO)
     {
         strcpy(estado,"si");
@@ -139,37 +139,108 @@ int buscar_2_Legajo(eAlumno listaDeAlumnos[],int cantidad)
         }
 
     }
-    if(retorno==-1)
-    {
 
-        printf("\n No existe ese Legajo \n");
-
-    }
 
     return retorno;
 }
 void borrarAlumnos(eAlumno listaDeAlumnos[],int cantidad)
 {
     int borrarLegajo;
-     borrarLegajo= buscar_2_Legajo(listaDeAlumnos,cantidad);
 
-        listaDeAlumnos[borrarLegajo].isEmpy=LIBRE;
+    borrarLegajo= buscar_2_Legajo(listaDeAlumnos,cantidad);
 
-        mostrarAlumnos(listaDeAlumnos,cantidad);
+    if(borrarLegajo==-1)
+    {
+
+        printf("\n No existe ese Legajo \n");
+
+    }
+
+    listaDeAlumnos[borrarLegajo].isEmpy=LIBRE;
+
+    mostrarAlumnos(listaDeAlumnos,cantidad);
 
 }
 
 
-void cargarAlumno(eAlumno listaDeAlumno[],int cantidad)
+void cargarListadoAlumno(eAlumno listaDeAlumno[],int cantidad)
 {
+    int indiceLib;
+
+    indiceLib=buscarIndice(listaDeAlumno,cantidad);
+    if(indiceLib!=-1)
+    {
+        //hay lugar
+        listaDeAlumno[indiceLib]=cargarAlumno();
+    }
+    else
+    {
+        printf("No hay espacio disponible");
+    }
+
+
+
+}
+eAlumno cargarAlumno(void)
+{
+    eAlumno unAlumno;
+    int option;
+
+    printf("Ingrese legajo: ");
+    scanf("%d", &unAlumno.legajo);
+    pedirString("ingrese nombre:",unAlumno.nombre,48);
+    printf("Ingrese nota: ");
+    scanf("%d", &unAlumno.nota);
+
+    borrar();
+
+    mostrarAlumno(unAlumno);
+
+    printf("Esta seguro que desea Guardar el Alumno?\n1. Si\n2. No\n:");
+    scanf("%d",&option);
+    if(option==1)
+    {
+        unAlumno.isEmpy = OCUPADO;
+    }
+    else
+    {
+
+        unAlumno.isEmpy = LIBRE;
+    }
+
+    return unAlumno;
+
+}
+
+void ordenarAlumnos(eAlumno listaDeAlumnos[],int cantidad)
+{
+    int i,j;
     eAlumno auxAlumno;
-    auxAlumno.legajo=buscarIndice(listaDeAlumno,cantidad);
-    printf("Legajo[%d]\n",auxAlumno.legajo);
-    pedirString("ingese Nombre:",auxAlumno.nombre,50);
 
-    auxAlumno.isEmpy=OCUPADO;
-
-    mostrarAlumno(auxAlumno);
+    for(i=0; i<cantidad-1; i++)
+    {
+        for(j=i+1; j<cantidad; j++)
+        {
+            if(strcmp(listaDeAlumnos[i].nombre,listaDeAlumnos[j].nombre)>0)
+            {
+                auxAlumno=listaDeAlumnos[i];
+                listaDeAlumnos[i]=listaDeAlumnos[j];
+                listaDeAlumnos[j]=auxAlumno;
+            }
+            else
+            {
+                if(strcmp(listaDeAlumnos[i].nombre,listaDeAlumnos[j].nombre)==0)
+                {
+                    if(listaDeAlumnos[i].nota>listaDeAlumnos[j].nota)
+                    {
+                        auxAlumno = listaDeAlumnos[i];
+                        listaDeAlumnos[i] = listaDeAlumnos[j];
+                        listaDeAlumnos[j] = auxAlumno;
+                    }
+                }
+            }
+        }
+    }
 
 
 
@@ -188,7 +259,7 @@ void pedirString(char* menssage,char* lettlers,int len)
     }
     strcpy(lettlers,auxString);
 }
-void pedirInt(char* menssage,int* entero,int len)
+void pedirInt(char* menssage,int entero,int len)
 {
     char auxString[100];
     printf("%s",menssage);
@@ -201,29 +272,17 @@ void pedirInt(char* menssage,int* entero,int len)
         scanf("%s",auxString);
     }
     entero=atoi(auxString);
-
 }
 void pausa()
 {
-    /*if(option==1)
-    {
-    system("read -p 'Press Enter to continue...' var");
-    }
-    else
-    {
-        system("pause");
-    }*/
-    system("read -p 'Press Enter to continue...' var");
+    //system("read -p 'Press Enter to continue...' var");
+
+    system("pause");
 
 }
 void borrar()
 {
-    /*if(option==1)
-    {
-    system("clear");
-    }else
-    {
     system("cls");
-    }*/
-    system("clear");
+
+    //system("clear");
 }

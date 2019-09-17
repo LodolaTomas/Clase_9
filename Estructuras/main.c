@@ -39,7 +39,7 @@ do
 
         case 1:
             borrar();
-            cargarAlumno(listadodeAlumnos,C);
+            cargarListadoAlumno(listadodeAlumnos,C);
             pausa();
             break;
         case 2:
@@ -48,7 +48,9 @@ do
             pausa();
             break;
         case 3:
-
+            borrar();
+            ordenarAlumnos(listadodeAlumnos,C);
+            pausa();
             break;
         case 4:
             borrar();
