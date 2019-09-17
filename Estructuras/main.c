@@ -38,7 +38,9 @@ do
         {
 
         case 1:
-
+            borrar();
+            cargarAlumno(listadodeAlumnos,C);
+            pausa();
             break;
         case 2:
             borrar();

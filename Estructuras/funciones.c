@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -24,7 +23,7 @@ void harcodeoAlumnos(eAlumno listaDeAlumnos[],int cantidad)
 {
     int i;
 
-    int legajo[]= {1,3,5,9,88};
+    int legajo[]= {0,1,2,3,4};
     int isEmpy[]= {1,0,1,1,0};
     char nombre[][20]= {"juan","pedro","maria","julieta","pepe"};
     int nota[]= {10,2,9,4,6};
@@ -116,7 +115,6 @@ void buscar_1_Alumno(eAlumno listaDeAlumnos[],int cantidad)
 
     }
 
-    return retorno;
 }
 int buscar_2_Legajo(eAlumno listaDeAlumnos[],int cantidad)
 {
@@ -158,6 +156,51 @@ void borrarAlumnos(eAlumno listaDeAlumnos[],int cantidad)
         listaDeAlumnos[borrarLegajo].isEmpy=LIBRE;
 
         mostrarAlumnos(listaDeAlumnos,cantidad);
+
+}
+
+
+void cargarAlumno(eAlumno listaDeAlumno[],int cantidad)
+{
+    eAlumno auxAlumno;
+    auxAlumno.legajo=buscarIndice(listaDeAlumno,cantidad);
+    printf("Legajo[%d]\n",auxAlumno.legajo);
+    pedirString("ingese Nombre:",auxAlumno.nombre,50);
+
+    auxAlumno.isEmpy=OCUPADO;
+
+    mostrarAlumno(auxAlumno);
+
+
+
+}
+void pedirString(char* menssage,char* lettlers,int len)
+{
+    char auxString[100];
+    printf("%s",menssage);
+    fflush(stdin);
+    scanf("%s",auxString);
+    while(strlen(auxString)>len)
+    {
+        printf("ERROR, Re%s",menssage);
+        fflush(stdin);
+        scanf("%s",auxString);
+    }
+    strcpy(lettlers,auxString);
+}
+void pedirInt(char* menssage,int* entero,int len)
+{
+    char auxString[100];
+    printf("%s",menssage);
+    fflush(stdin);
+    scanf("%s",auxString);
+    while(strlen(auxString)>len)
+    {
+        printf("ERROR, Re%s",menssage);
+        fflush(stdin);
+        scanf("%s",auxString);
+    }
+    entero=atoi(auxString);
 
 }
 void pausa()
