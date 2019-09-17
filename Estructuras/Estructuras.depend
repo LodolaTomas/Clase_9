@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1568723859 source:/home/alumno/Escritorio/Clase_9/Estructuras/funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1568723606 /home/alumno/Escritorio/Clase_9/Estructuras/funciones.h
+
+1568723859 source:/home/alumno/Escritorio/Clase_9/Estructuras/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
